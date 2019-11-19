@@ -1,0 +1,31 @@
+<html>
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#button").on("click", function() {
+				$("#div").show();
+			});
+
+			$("#navbar .homebutton").on("click", function() {
+				$("#testsection").show();
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="myclass"></div>
+	<div class="myclass"></div>
+	<div class="myclass">
+		<button type="button" id="button">click me</button>
+		<div id="div" style="display:none">invisible</div>
+	</div>
+
+	<div id="navbar">
+		<div class="homebutton">Home</div>
+		<div class="otherbutton">Other</div>
+	</div>
+
+	<div id="testsection" style="display:none">test</div>
+</body>
+</html>
