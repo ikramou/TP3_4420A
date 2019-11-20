@@ -1,7 +1,8 @@
 {
   
     "dbUrl": "mongodb+srv://aminata_ndiaye:LOG4420A19@research-group-4sxll.mongodb.net/test?retryWrites=true&w=majority",
-    "dbName": "LOG4420_TP3"
+    "dbName": "TP3"
+   
   
   
 }

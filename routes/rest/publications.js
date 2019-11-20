@@ -5,6 +5,83 @@ module.exports = servicePublication => {
 const router = express.Router()
 
   
+function handelError(req, res,next){
+  var list = [];
+  const body =req.body
+  
+
+  if (body === undefined || body === null)  
+  {
+    if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["EMPTY_PUBLICATION_FORM"] !== undefined)
+    {
+      
+      list.push(req.app.locals.t["ERRORS"]["EMPTY_PUBLICATION_FORM"])
+    }
+  }
+
+  else
+
+  {
+
+    if(body.authors === undefined) 
+      {
+        if  (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["AUTHOR_EMPTY_FORM"] !== undefined)
+        {
+          
+          list.push(req.app.locals.t["ERRORS"]["AUTHOR_EMPTY_FORM"]) 
+          
+        }
+        
+      }
+
+
+    if (body.year === undefined || isNaN(body.year) || body.year<0)
+      {
+        if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["YEAR_NOT_INT_FORM"] !== undefined)
+        {
+          
+          list.push(req.app.locals.t["ERRORS"]["YEAR_NOT_INT_FORM"])
+        }
+      }
+
+    if (body.month === undefined || isNaN(body.month) || body.month<0 || body.month>11)
+  
+      if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["MONTH_ERROR_FORM"] !== undefined)
+        {
+          
+          list.push(req.app.locals.t["ERRORS"]["MONTH_ERROR_FORM"])
+        }
+
+
+    if ( body.title === undefined || (body.title).length < 5)
+      {
+        if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["PUB_AT_LEAST_5_CHAR_FORM"] !== undefined)
+        {
+          
+          list.push(req.app.locals.t["ERRORS"]["PUB_AT_LEAST_5_CHAR_FORM"])
+          
+
+        }
+      
+      }
+      
+
+    if ( body.venue === undefined || (body.venue).length < 5)
+      if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["VENUE_AT_LEAST_5_CHAR_FORM"] !== undefined)
+      {
+        
+        list.push(req.app.locals.t["ERRORS"]["VENUE_AT_LEAST_5_CHAR_FORM"])
+        
+        
+      }
+    
+  }
+
+
+
+  return list
+}
+
   // À COMPLÉTER
   router.get('/',(req,res,next)=>{
 
@@ -50,7 +127,7 @@ const router = express.Router()
 
         try {
 
-          const publisLength = await servicePublication.getNumberOfPublications((err, nbPubs) => { 
+           await servicePublication.getNumberOfPublications((err, nbPubs) => { 
             
             
 
@@ -81,17 +158,16 @@ const router = express.Router()
 
    router.post('/',  (req,res,next)=>{
 
-    
-     
+   
     servicePublication.createPublication(req.body)((err, data)=>{
-
+      
   
       if (err)
         
         
         {
           
-          if (req.app.locals.t["ERRORS"] === undefined  || req.app.locals.t["ERRORS"]["PUB_CREATE_ERROR"])
+          if (req.app.locals.t["ERRORS"] === undefined  && req.app.locals.t["ERRORS"]["PUB_CREATE_ERROR"])
             res.status(500).json({ "errors": [err.message] })
           else
             res.status(500).json({"errors":[req.app.locals.t["ERRORS"]["PUB_CREATE_ERROR"]]})
@@ -100,72 +176,20 @@ const router = express.Router()
       else
 
         {
-          var list=[]
-          
-          if (req.body === undefined || req.body === null)  
-            {
-              if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["EMPTY_PUBLICATION_FORM"] !== undefined)
-              {
-                res.status(400).json({"errors":[req.app.locals.t["ERRORS"]["EMPTY_PUBLICATION_FORM"]]})
-                list.push(req.app.locals.t["ERRORS"]["EMPTY_PUBLICATION_FORM"])
-              }
-            }
-
-          else
-          
-            {
-              if(req.body.authors === undefined) 
-                {
-                  if  (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["AUTHOR_EMPTY_FORM"] !== undefined)
-                  {
-                    res.status(400).json({"errors":[req.app.locals.t["ERRORS"]["AUTHOR_EMPTY_FORM"]]})
-                    list.push(req.app.locals.t["ERRORS"]["AUTHOR_EMPTY_FORM"]) 
-                  }
-                }
-
-
-              if ( req.body !== undefined && (req.body.year === undefined || isNaN(req.body.year) || req.body.year<0))
-                {
-                  if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["YEAR_NOT_INT_FORM"] !== undefined)
-                  {
-                    res.status(400).json({"errors":[req.app.locals.t["ERRORS"]["YEAR_NOT_INT_FORM"]]})
-                    list.push(req.app.locals.t["ERRORS"]["YEAR_NOT_INT_FORM"])
-                  }
-                }
-
-              if ( req.body !== undefined && (req.body.month === undefined || isNaN(req.body.month) || req.body.month<0 || req.body.month>11))
-            
-                if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["MONTH_ERROR_FORM"] !== undefined)
-                  {
-                    res.status(400).json({"errors":[req.app.locals.t["ERRORS"]["MONTH_ERROR_FORM"]]})
-                    list.push(req.app.locals.t["ERRORS"]["MONTH_ERROR_FORM"])
-                  }
-
-
-              if ( req.body !== undefined && (req.body.title === undefined || (req.body.title).length < 5))
-                if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["PUB_AT_LEAST_5_CHAR_FORM"] !== undefined)
-                  {
-                    res.status(400).json({"errors":[req.app.locals.t["ERRORS"]["PUB_AT_LEAST_5_CHAR_FORM"]]})
-                    list.push(req.app.locals.t["ERRORS"]["PUB_AT_LEAST_5_CHAR_FORM"])
-                  }
-
-              if ( req.body !== undefined && (req.body.venue === undefined || (req.body.venue).length < 5))
-                if (req.app.locals.t["ERRORS"] !== undefined && req.app.locals.t["ERRORS"]["VENUE_AT_LEAST_5_CHAR_FORM"] !== undefined)
-                {
-                  res.status(400).json({"errors":[req.app.locals.t["ERRORS"]["VENUE_AT_LEAST_5_CHAR_FORM"]]})
-                  list.push(req.app.locals.t["ERRORS"]["PUB_AT_LEAST_5_CHAR_FORM"])
-                }
-              
-              }
-
-          if (list.length>0)
-            res.status(400).json({"errors": list})
+         const errorArray = handelError(req, res,next)
+         
+         if (errorArray.length>0)
+            res.status(400).json({"errors": errorArray})
         
           else
-            res.sendStatus(201).end()
-        
+            res.status(201).json(data)
+          
+        }
 
-      }
+      
+   
+
+      
 
      }  )
   }) 

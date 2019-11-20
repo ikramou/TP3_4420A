@@ -56,7 +56,7 @@ async function  getPublications(req,res,next){
 router.get('/', async (req, res, next)=> {
     
 
-      getPublications(req,res,next)
+      await getPublications(req,res,next)
 
        
 })
@@ -69,21 +69,21 @@ router.post('/', async (req, res, next)=> {
         month: req.body.month,
         year: req.body.year,
         authors: req.body.authors,
-        venue: req.body.venue }, { headers: {'Content-Type' : '*/json', 'Accept': '*/json'} , timeout: 140000})
+        venue: req.body.venue })
 
-        .then(response => {
+        .then( response => {
                 if (response.status === 201)
-                    getPublications(req,res,next).catch((e)=>next(e))
+                     getPublications(req,res,next).catch((e)=>next(e))
             
         })   
           
 })
 
 router.delete('/', async (req, res, next)=> {
-    console.log(1)
+    
    
     const response = await axios.delete(url, { params:{id: req.query.id }}).catch((e)=>next(e)) 
-    console.log(response)
+   
 
            return response
 })

@@ -7,12 +7,12 @@ module.exports = (serviceProjects, servicePublication) => {
   // À COMPLÉTER
   router.get('/', (req, res, next) => {
     
-    serviceProjects.getProjects(req.app.locals.lang)((err, data)=> 
+    serviceProjects.getProjects(req.query.clang)((err, data)=> 
     {
       
       if(err)
         {
-        if( req.app.locals.t["ERRORS"] === undefined && req.app.locals.t["ERRORS"]["PROJECTS_ERROR"] === undefined)
+        if( req.app.locals.t === undefined || req.app.locals.t["ERRORS"] === undefined || req.app.locals.t["ERRORS"]["PROJECTS_ERROR"] === undefined)
           res.status(500).json({"errors":[err.message]})
         else
           res.status(500).json({"errors": [req.app.locals.t["ERRORS"]["PROJECTS_ERROR"]]})
@@ -28,7 +28,7 @@ module.exports = (serviceProjects, servicePublication) => {
   router.get('/:id',(req, res, next) => { 
     
     
-    serviceProjects.getProjectById(req.app.locals.lang)('en')(req.params.id)((err, data)=> 
+    serviceProjects.getProjectById(req.app.locals.lang)(req.query.clang)(req.params.id)((err, data)=> 
     
       
     {
@@ -36,7 +36,7 @@ module.exports = (serviceProjects, servicePublication) => {
       if (err)
       
         {
-          console.log(err.message)
+          
           
           if(err.name === 'NOT_FOUND')
             if( req.app.locals.t["ERRORS"] === undefined || req.app.locals.t["ERRORS"]["PROJECT_NOT_FOUND"] === undefined)
@@ -47,24 +47,31 @@ module.exports = (serviceProjects, servicePublication) => {
           else
           {
             
-            if (req.app.locals.t["ERRORS"] === undefined || req.app.locals.t["ERRORS"]["PROJECTS_ERROR"] === undefined)
+            if (req.app.locals.t["ERRORS"] === undefined || req.app.locals.t["ERRORS"]["PROJECT_ERROR"] === undefined)
               res.status(500).json({"errors":[err.message]})
             else
-              console.log("erreur", err.errors )
-              res.status(500).json({"errors": [req.app.locals.t["ERRORS"]["PROJECTS_ERROR"]]})
+             
+              res.status(500).json({"errors": [req.app.locals.t["ERRORS"]["PROJECT_ERROR"]]})
           }
               
         }
       else 
-        console.log("pubs", data.publications)
+        
         servicePublication.getPublicationsByIds(data.publications)((err,pubs)=>{
           if (err)
-            next(err)
+          {
+            if (req.app.locals.t["ERRORS"] === undefined || req.app.locals.t["ERRORS"]["PROJECT_ERROR"] === undefined)
+              res.status(500).json({"errors":[err.message]})
+            else
+              
+              res.status(500).json({"errors": [req.app.locals.t["ERRORS"]["PROJECT_ERROR"]]})
+          }
+            
 
           else
             theProject = {project : data, publications : pubs}
             
-            res.json(theProject)
+            res.status(200).json(theProject)
           
       })
   

@@ -18,12 +18,31 @@ const { getTranslation } = require('../utils')
  */
 const getNews = db => language => callback => {
   // À COMPLÉTER
+  db.collection('news').find({}).toArray(function(err, data){
+    if (err) 
+      {
+        callback(err, null)
+      }else
+        {
+          
+          const news = ((data === null) ? [] : data)
+            .map(s => { 
+              const translatedText = getTranslation(language, s.text)
+              const newCreatedAtDate = moment(s.createdAt, 'YYYY-MM-DD HH:mm:ss').toDate()
+              return {
+                ...s,
+                text: translatedText,
+                type: 'news',
+                createdAt: newCreatedAtDate
 
-  
-  
-    //const news = db.collection('news')
-    //new.find({}).toArray().then(response => res.status(200).json(response)).catch(error => console.error(error));
-    callback(null, [])
+              }
+            }
+          )        
+          callback(null, news)
+    }
+      
+  })
+    
 }
 
 module.exports = db => {

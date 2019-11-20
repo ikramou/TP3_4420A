@@ -11,7 +11,7 @@ module.exports = router
 router.get('/', async (req, res, next)=> {
 
         try {
-            const response = await axios.get(url, { headers: {'Content-Type' : '*/json', 'Accept': '*/json'} });
+            const response = await axios.get(url);
             const data = response.data;
             res.render('index',{'feeds': data} )
             

@@ -11,7 +11,7 @@ module.exports = serviceFeed => {
         if(error)
         {
               
-          if (req.app.locals.t === undefined && req.app.locals.t["ERRORS"] === undefined && req.app.locals.t["ERRORS"]["FEEDS_ERROR"] === undefined)
+          if (req.app.locals.t === undefined || req.app.locals.t["ERRORS"] === undefined || req.app.locals.t["ERRORS"]["FEEDS_ERROR"] === undefined)
             res.status(500).json({"errors": [error.message]})
             
           else  
