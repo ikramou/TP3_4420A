@@ -21,8 +21,6 @@ const getProjects = db => language => callback => {
 
  
   db.collection("projects").find({}).toArray(function(err, data){
-
-    console.log("test",language)
     
     if (err){
       callback(err, null)
@@ -68,7 +66,6 @@ const getProjects = db => language => callback => {
  */
 const getProjectById = db => translationObj => language => id => callback => {
   // À COMPLÉTER
-  console.log("len", language)
   db.collection('projects').find({_id : id}).toArray((err, data)=>{
     
     if(err)

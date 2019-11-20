@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="accueil"
+    errors="0" failures="1" hostname="" id="" package="accueil" skipped="0"
+    tests="1" time="6.557" timestamp="">
+  
+    <testcase name="Page d&#39;accueil" classname="accueil" time="6.557" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Expected elements &lt;.news li&gt; count to equal: &#34;9&#34; - expected [0;32m&#34;equal &#39;9&#39;&#34;[0m but got: [0;31m&#34;7&#34;[0m">    at Object.Page d&#39;accueil (C:\poly\LOG4420\TP3\LOG4420_TP3\TP3_4420A\tests\e2e\accueil.js:24:19)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+
+    <failure message="    at Object.Page d&#39;accueil (C:\poly\LOG4420\TP3\LOG4420_TP3\TP3_4420A\tests\e2e\accueil.js:24:19)">    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

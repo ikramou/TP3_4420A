@@ -69,10 +69,11 @@ module.exports = (serviceProjects, servicePublication) => {
           }
             
 
-          else
+          else{
             theProject = {project : data, publications : pubs}
             
             res.status(200).json(theProject)
+          }
           
       })
   
