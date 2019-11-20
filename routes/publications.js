@@ -6,6 +6,19 @@ const axios = require('axios')
 // À COMPLÉTER
 const url = "http://localhost:3000/api/publications";
 
+function getMonths(req,res,next){
+    if (req.query.clang!==undefined)
+        if (req.query.clang ==='en')
+            moment.locale('en')
+        else 
+            moment.locale('fr')
+    else 
+        moment.locale('fr')
+       
+
+
+}
+
 async function  getPublications(req,res,next){
     const page=req.query.page
     const limit = req.query.limit
@@ -30,9 +43,9 @@ async function  getPublications(req,res,next){
             sorting: sort
             
         }
-        
+        getMonths(req,res,next)
                 
-        const response = await axios.get(url+"?page="+paginationOp.pageNumber+"&limit="+paginationOp.limit+"&sort_by="+sortBy+"&order_by="+orderBy);
+        const response = await axios.get(url+"?page="+paginationOp.pageNumber+"&limit="+paginationOp.limit+"&sort_by="+sortBy+"&order_by="+orderBy+"&clang="+req.query.clang);
         const data = response.data;
         res.render('publication',{'publications':data.publications, 'pagingOptions': paginationOp ,'numberOfPages': Math.ceil((data.count)/(paginationOp.limit)), 'monthNames': moment.months(), 'pubFormErrors':[]} )
         

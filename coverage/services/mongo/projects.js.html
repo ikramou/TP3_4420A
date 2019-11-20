@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">15.63% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/30</span>
+        <span class='fraction'>5/32</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20.83% </span>
+        <span class="strong">19.23% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/24</span>
+        <span class='fraction'>5/26</span>
       </div>
     </div>
     <p class="quiet">
@@ -165,16 +165,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,6 +221,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,15 +240,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -264,32 +264,31 @@ const ObjectId = require('mongodb').ObjectId
  */
 const getProjects = <span class="fstat-no" title="function not covered" >db</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >la</span>nguage =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >ca</span>llback =&gt; {</span></span>
   // À COMPLÉTER
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
- <span class="cstat-no" title="statement not covered" ></span>
-  db.c<span class="cstat-no" title="statement not covered" >ollection("projects"</span>).find({}).toArray(function(err, data){
 &nbsp;
-    console.log("test",language)
-    <span class="cstat-no" title="statement not covered" ></span>
-    if (err){
-      callbac<span class="fstat-no" title="function not covered" >k(</span>err, null)
-    } else <span class="cstat-no" title="statement not covered" ></span>
-    {<span class="cstat-no" title="statement not covered" ></span>
-      <span class="cstat-no" title="statement not covered" ></span>
-      const projects = ((data === null) ? [] : data)
+ 
+<span class="cstat-no" title="statement not covered" >  db.collection("projects").find({}).toArray(<span class="fstat-no" title="function not covered" >fu</span>nction(err, data){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    console.log("test",language)</span>
+    
+<span class="cstat-no" title="statement not covered" >    if (err){</span>
+<span class="cstat-no" title="statement not covered" >      callback(err, null)</span>
+    } else 
+    {
+      
+      const projects = <span class="cstat-no" title="statement not covered" >((data === null) ? [] : data)</span>
         // .sort((p1, p2) =&gt; p1.year &lt; p2.year ? 1 : p1.year &gt; p2.year ? -1 : 0)
-        .map(project =&gt; {
-          const translatedTitle = getTranslation(language, project.title)
-          const translatedDescription = getTranslation(language, project.description)
-          console.log(translatedTitle)
-<span class="cstat-no" title="statement not covered" >          console.log(translate</span>dDescription)
-          return {
+        .map(<span class="fstat-no" title="function not covered" >pr</span>oject =&gt; {
+          const translatedTitle = <span class="cstat-no" title="statement not covered" >getTranslation(language, project.title)</span>
+          const translatedDescription = <span class="cstat-no" title="statement not covered" >getTranslation(language, project.description)</span>
+          
+<span class="cstat-no" title="statement not covered" >          return {</span>
             ...project,
             title: translatedTitle,
             description: translatedDescription,
             publications: (project.publications === undefined) ? [] : project.publications
           }
         })
-      callback(null, projects)
+<span class="cstat-no" title="statement not covered" >      callback(null, projects)</span>
 &nbsp;
     }
   })
@@ -305,40 +304,41 @@ const getProjects = <span class="fstat-no" title="function not covered" >db</spa
  */
 &nbsp;
 /**
- *  Obtenir un projet s<span class="fstat-no" title="function not covered" >el</span>on u<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >n </span>identificatn.<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ></span></span></span></span></span></span></span>
+ *  Obtenir un projet selon un identificatn.
  *
- *<span class="cstat-no" title="statement not covered" >  @param db - Base de donnée Mongo<span class="fstat-no" title="function not covered" ></span></span>
- *  <span class="cstat-no" title="statement not covered" >@param {Object} translationObj - Objet qui contient l'ensemble des traductions définies</span>
+ *  @param db - Base de donnée Mongo
+ *  @param {Object} translationObj - Objet qui contient l'ensemble des traductions définies
  *  @param {string} language - Langue courante (p.ex. 'fr', 'en', etc.)
- *  @p<span class="cstat-no" title="statement not covered" >aram {int} id - Ide</span>ntificant unique du projet à trouer
+ *  @param {int} id - Identificant unique du projet à trouer
  *  @param {projectCallback} callback - Fonction de rappel pour obtenir le résultat
- */<span class="cstat-no" title="statement not covered" ></span>
-const getP<span class="cstat-no" title="statement not covered" >rojectById = db =&gt; tr</span>anslationObj =&gt; language =&gt; id =&gt; callback =&gt; {
+ */
+const getProjectById = <span class="fstat-no" title="function not covered" >db</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >tr</span>anslationObj =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >la</span>nguage =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >id</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >ca</span>llback =&gt; {</span></span></span></span>
   // À COMPLÉTER
-  db.collection('projects').find({_id : id}).toArray((err, data)=&gt;{
-    <span class="cstat-no" title="statement not covered" ></span>
-    if(err)<span class="cstat-no" title="statement not covered" ></span>
-    {<span class="cstat-no" title="statement not covered" ></span>
-      call<span class="cstat-no" title="statement not covered" >back(err,null)</span>
+<span class="cstat-no" title="statement not covered" >  console.log("len", language)</span>
+<span class="cstat-no" title="statement not covered" >  db.collection('projects').find({_id : id}).toArray(<span class="fstat-no" title="function not covered" >(e</span>rr, data)=&gt;{</span>
+    
+<span class="cstat-no" title="statement not covered" >    if(err)</span>
+    {
+<span class="cstat-no" title="statement not covered" >      callback(err,null)</span>
     } else {
-        if (data){
-          callback(null, data)
+<span class="cstat-no" title="statement not covered" >        if (data){</span>
+<span class="cstat-no" title="statement not covered" >          callback(null, data)</span>
 &nbsp;
         }else {
-<span class="cstat-no" title="statement not covered" >          con</span>st errorMsg = translationObj === undefined &amp;&amp; translationObj['PROJECTS'] === undefined &amp;&amp; translationObj['PROJECTS']['PROJECT_NOT_FOUND_MSG'] === undefined ? `${id} not found` : translationObj['PROJECTS'['PROJECT_NOT_FOUND_MSG']]
-          const error = new Error(errorMsg)
-          error.name = 'NOT_FOUND'
-          callbac<span class="fstat-no" title="function not covered" >k(</span>error, null)
-  <span class="cstat-no" title="statement not covered" >      </span>
+          const errorMsg = <span class="cstat-no" title="statement not covered" >translationObj === undefined &amp;&amp; translationObj['PROJECTS'] === undefined &amp;&amp; translationObj['PROJECTS']['PROJECT_NOT_FOUND_MSG'] === undefined ? `${id} not found` : translationObj['PROJECTS'['PROJECT_NOT_FOUND_MSG']]</span>
+          const error = <span class="cstat-no" title="statement not covered" >new Error(errorMsg)</span>
+<span class="cstat-no" title="statement not covered" >          error.name = 'NOT_FOUND'</span>
+<span class="cstat-no" title="statement not covered" >          callback(error, null)</span>
+        
         }
 &nbsp;
     }
   })
-  callback()
+<span class="cstat-no" title="statement not covered" >  callback()</span>
 }
 &nbsp;
-module.exports = db =&gt; {
-  return {
+module.exports = <span class="fstat-no" title="function not covered" >db</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >  return {</span>
     getProjects: getProjects(db),
     getProjectById: getProjectById(db)
   }
@@ -349,7 +349,7 @@ module.exports = db =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Nov 19 2019 21:56:23 GMT-0500 (heure normale de l’Est nord-américain)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 20 2019 14:26:06 GMT-0500 (heure normale de l’Est nord-américain)
 </div>
 </div>
 <script src="../../prettify.js"></script>
