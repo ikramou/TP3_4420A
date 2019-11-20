@@ -34,8 +34,7 @@ const getProjects = db => language => callback => {
         .map(project => {
           const translatedTitle = getTranslation(language, project.title)
           const translatedDescription = getTranslation(language, project.description)
-          console.log(translatedTitle)
-          console.log(translatedDescription)
+          
           return {
             ...project,
             title: translatedTitle,
@@ -69,6 +68,7 @@ const getProjects = db => language => callback => {
  */
 const getProjectById = db => translationObj => language => id => callback => {
   // À COMPLÉTER
+  console.log("len", language)
   db.collection('projects').find({_id : id}).toArray((err, data)=>{
     
     if(err)

@@ -136,7 +136,16 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -222,6 +231,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -246,24 +264,32 @@ const ObjectId = require('mongodb').ObjectId
  */
 const getProjects = <span class="fstat-no" title="function not covered" >db</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >la</span>nguage =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >ca</span>llback =&gt; {</span></span>
   // À COMPLÉTER
-<span class="cstat-no" title="statement not covered" >  db.collection("projects").find({}).toArray(<span class="fstat-no" title="function not covered" >fu</span>nction(err, data){</span>
-<span class="cstat-no" title="statement not covered" >    if (err){</span>
-<span class="cstat-no" title="statement not covered" >      callback(err, null)</span>
-    } else 
-    {
-      const projects = <span class="cstat-no" title="statement not covered" >((data === null) ? [] : data)</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+ <span class="cstat-no" title="statement not covered" ></span>
+  db.c<span class="cstat-no" title="statement not covered" >ollection("projects"</span>).find({}).toArray(function(err, data){
+&nbsp;
+    console.log("test",language)
+    <span class="cstat-no" title="statement not covered" ></span>
+    if (err){
+      callbac<span class="fstat-no" title="function not covered" >k(</span>err, null)
+    } else <span class="cstat-no" title="statement not covered" ></span>
+    {<span class="cstat-no" title="statement not covered" ></span>
+      <span class="cstat-no" title="statement not covered" ></span>
+      const projects = ((data === null) ? [] : data)
         // .sort((p1, p2) =&gt; p1.year &lt; p2.year ? 1 : p1.year &gt; p2.year ? -1 : 0)
-        .map(<span class="fstat-no" title="function not covered" >pr</span>oject =&gt; {
-          const translatedTitle = <span class="cstat-no" title="statement not covered" >getTranslation(language, project.title)</span>
-          const translatedDescription = <span class="cstat-no" title="statement not covered" >getTranslation(language, project.description)</span>
-<span class="cstat-no" title="statement not covered" >          return {</span>
+        .map(project =&gt; {
+          const translatedTitle = getTranslation(language, project.title)
+          const translatedDescription = getTranslation(language, project.description)
+          console.log(translatedTitle)
+<span class="cstat-no" title="statement not covered" >          console.log(translate</span>dDescription)
+          return {
             ...project,
             title: translatedTitle,
             description: translatedDescription,
             publications: (project.publications === undefined) ? [] : project.publications
           }
         })
-<span class="cstat-no" title="statement not covered" >      callback(null, projects)</span>
+      callback(null, projects)
 &nbsp;
     }
   })
@@ -279,39 +305,40 @@ const getProjects = <span class="fstat-no" title="function not covered" >db</spa
  */
 &nbsp;
 /**
- *  Obtenir un projet selon un identificatn.
+ *  Obtenir un projet s<span class="fstat-no" title="function not covered" >el</span>on u<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >n </span>identificatn.<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ></span></span></span></span></span></span></span>
  *
- *  @param db - Base de donnée Mongo
- *  @param {Object} translationObj - Objet qui contient l'ensemble des traductions définies
+ *<span class="cstat-no" title="statement not covered" >  @param db - Base de donnée Mongo<span class="fstat-no" title="function not covered" ></span></span>
+ *  <span class="cstat-no" title="statement not covered" >@param {Object} translationObj - Objet qui contient l'ensemble des traductions définies</span>
  *  @param {string} language - Langue courante (p.ex. 'fr', 'en', etc.)
- *  @param {int} id - Identificant unique du projet à trouer
+ *  @p<span class="cstat-no" title="statement not covered" >aram {int} id - Ide</span>ntificant unique du projet à trouer
  *  @param {projectCallback} callback - Fonction de rappel pour obtenir le résultat
- */
-const getProjectById = <span class="fstat-no" title="function not covered" >db</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >tr</span>anslationObj =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >la</span>nguage =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >id</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >ca</span>llback =&gt; {</span></span></span></span>
+ */<span class="cstat-no" title="statement not covered" ></span>
+const getP<span class="cstat-no" title="statement not covered" >rojectById = db =&gt; tr</span>anslationObj =&gt; language =&gt; id =&gt; callback =&gt; {
   // À COMPLÉTER
-<span class="cstat-no" title="statement not covered" >  db.collection('projects').find({_id: id}).toArray(<span class="fstat-no" title="function not covered" >(e</span>rr, data)=&gt;{</span>
-<span class="cstat-no" title="statement not covered" >    if(err)</span>
-    {
-<span class="cstat-no" title="statement not covered" >      callback(err,null)</span>
+  db.collection('projects').find({_id : id}).toArray((err, data)=&gt;{
+    <span class="cstat-no" title="statement not covered" ></span>
+    if(err)<span class="cstat-no" title="statement not covered" ></span>
+    {<span class="cstat-no" title="statement not covered" ></span>
+      call<span class="cstat-no" title="statement not covered" >back(err,null)</span>
     } else {
-<span class="cstat-no" title="statement not covered" >        if (data){</span>
-<span class="cstat-no" title="statement not covered" >          callback(null, data)</span>
+        if (data){
+          callback(null, data)
 &nbsp;
         }else {
-          const errorMsg = <span class="cstat-no" title="statement not covered" >translationObj === undefined &amp;&amp; translationObj['PROJECTS'] === undefined &amp;&amp; translationObj['PROJECTS']['PROJECT_NOT_FOUND_MSG'] === undefined ? `${id} not found` : translationObj['PROJECTS'['PROJECT_NOT_FOUND_MSG']]</span>
-          const error = <span class="cstat-no" title="statement not covered" >new Error(errorMsg)</span>
-<span class="cstat-no" title="statement not covered" >          error.name = 'NOT_FOUND'</span>
-<span class="cstat-no" title="statement not covered" >          callback(error, null)</span>
-        
+<span class="cstat-no" title="statement not covered" >          con</span>st errorMsg = translationObj === undefined &amp;&amp; translationObj['PROJECTS'] === undefined &amp;&amp; translationObj['PROJECTS']['PROJECT_NOT_FOUND_MSG'] === undefined ? `${id} not found` : translationObj['PROJECTS'['PROJECT_NOT_FOUND_MSG']]
+          const error = new Error(errorMsg)
+          error.name = 'NOT_FOUND'
+          callbac<span class="fstat-no" title="function not covered" >k(</span>error, null)
+  <span class="cstat-no" title="statement not covered" >      </span>
         }
 &nbsp;
     }
   })
-<span class="cstat-no" title="statement not covered" >  callback()</span>
+  callback()
 }
 &nbsp;
-module.exports = <span class="fstat-no" title="function not covered" >db</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >  return {</span>
+module.exports = db =&gt; {
+  return {
     getProjects: getProjects(db),
     getProjectById: getProjectById(db)
   }
@@ -322,7 +349,7 @@ module.exports = <span class="fstat-no" title="function not covered" >db</span> 
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Nov 19 2019 19:56:42 GMT-0500 (heure normale de l’Est nord-américain)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Nov 19 2019 21:56:23 GMT-0500 (heure normale de l’Est nord-américain)
 </div>
 </div>
 <script src="../../prettify.js"></script>

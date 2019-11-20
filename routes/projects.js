@@ -2,10 +2,14 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 
-const url = "http://localhost:3000/api/projects";
+var url = "http://localhost:3000/api/projects";
 
 
 router.get('/', async (req, res, next) => {
+
+  if (req.query.clang)
+    url = url+'/?clang='+req.query.clang
+  
     {
         try {
           const response = await axios.get(url);
@@ -27,8 +31,13 @@ router.get('/:id', (req, res, next) => {
    
     const getData = async url => {
         try {
-            
-          const response = await axios.get(url+'/'+params.id);
+          if (req.query.clang)
+            query= { clang: req.query }
+          else 
+            query={}
+
+                  
+          const response = await axios.get(url+'/'+params.id, {query: query});
           
           const data = response.data;
           res.render('project',{'project':data.project,'publications':data.publications})
