@@ -18,7 +18,7 @@
     "start": "npm run setup && nodemon",
     "test-ws": "node_modules/.bin/nyc --reporter=html --reporter=text node_modules/.bin/mocha --recursive --reporter=spec --color=false tests/api",
     "test-mongo": "npm run setup && node_modules/.bin/nyc --reporter=html --reporter=text node_modules/.bin/mocha --recursive --reporter=spec --color=false tests/services",
-    "test": "npm run setup && node_modules/.bin/nyc --reporter=html --reporter=text node_modules/.bin/mocha --recursive --reporter=spec --color=false tests",
+    "test": "npm run setup && node ./node_modules/nyc/bin/nyc --reporter=html --reporter=text ./node_modules/mocha/bin/mocha --recursive --reporter=spec --color=false tests",
     "e2e": "npm run setup && nightwatch --config ./tests/nightwatch.conf.js --env firefox"
   },
   "author": "Konstantinos Lambrou-Latreille",

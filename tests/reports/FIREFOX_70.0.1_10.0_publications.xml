@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="publications"
+    errors="0" failures="1" hostname="" id="" package="publications" skipped="0"
+    tests="1" time="3.717" timestamp="">
+  
+    <testcase name="Page de publications" classname="publications" time="3.717" assertions="4">
+
+    
+
+    
+
+      <failure message="Le menu de la page de publications est sélectionné in 1000 ms. - expected [0;32m&#34;present&#34;[0m but got: [0;31m&#34;not present&#34;[0m">    at Object.Page de publications (C:\poly\LOG4420\TP3\LOG4420_TP3\TP3_4420A\tests\e2e\publications.js:21:15)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+
+    <failure message="    at Object.Page de publications (C:\poly\LOG4420\TP3\LOG4420_TP3\TP3_4420A\tests\e2e\publications.js:21:15)">    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>
