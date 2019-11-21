@@ -49,6 +49,3 @@ router.get('/:id', (req, res, next) => {
     
 })
 module.exports = router
-
-
-module.exports = router

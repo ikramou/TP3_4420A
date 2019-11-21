@@ -89,11 +89,11 @@ function handelError(req, res,next){
     const orderBy=req.query.order_by
     var sort =[]
 
-    if (sortBy  && orderBy)
+    if (sortBy  || orderBy)
       if (sortBy === "title")
         sort = [['title', orderBy]]
       else
-        sort = [['year', orderBy], ['month', orderBy]]
+        sort = [['date', orderBy]]
     else
         sort = [['title', 'desc']]//,['year', 'desc'], ['month', 'desc']]
 

@@ -66,26 +66,22 @@ const getProjects = db => language => callback => {
  */
 const getProjectById = db => translationObj => language => id => callback => {
   // À COMPLÉTER
-  db.collection('projects').find({_id : id}).toArray((err, data)=>{
-    
-    if(err)
-    {
-      callback(err,null)
+  
+ getProjects(db)(language)((err, projects) => {
+  if (err) {
+    callback(err, null)
+  } else {
+    const projectOpt = projects.find(p => p._id === id)
+    if (projectOpt) {
+      callback(null, projectOpt)
     } else {
-        if (data){
-          callback(null, data)
-
-        }else {
-          const errorMsg = translationObj === undefined && translationObj['PROJECTS'] === undefined && translationObj['PROJECTS']['PROJECT_NOT_FOUND_MSG'] === undefined ? `${id} not found` : translationObj['PROJECTS'['PROJECT_NOT_FOUND_MSG']]
-          const error = new Error(errorMsg)
-          error.name = 'NOT_FOUND'
-          callback(error, null)
-        
-        }
-
+      const errorMsg = translationObj === undefined && translationObj['PROJECTS'] === undefined && translationObj['PROJECTS']['PROJECT_NOT_FOUND_MSG'] === undefined ? `${id} not found` : translationObj['PROJECTS'['PROJECT_NOT_FOUND_MSG']]
+      const error = new Error(errorMsg)
+      error.name = 'NOT_FOUND'
+      callback(error, null)
     }
-  })
-  callback()
+  }
+})
 }
 
 module.exports = db => {

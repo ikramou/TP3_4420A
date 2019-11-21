@@ -5,7 +5,7 @@ module.exports = serviceFeed => {
 
   router.get('/',  (req, res, next)=> {
   
-    {  serviceFeed.getFeeds(new Date())(req.app.locals.lang)((error, data)=>
+    {  serviceFeed.getFeeds(new Date(2019, 1, 1))(req.app.locals.lang)((error, data)=>
       {
        
         if(error)

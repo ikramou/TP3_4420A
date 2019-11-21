@@ -5,18 +5,48 @@
 
   <testsuite name="publications"
     errors="0" failures="1" hostname="" id="" package="publications" skipped="0"
-    tests="1" time="3.717" timestamp="">
+    tests="1" time="8.172" timestamp="">
   
-    <testcase name="Page de publications" classname="publications" time="3.717" assertions="4">
+    <testcase name="Page de publications" classname="publications" time="8.172" assertions="17">
 
     
 
     
 
-      <failure message="Le menu de la page de publications est sélectionné in 1000 ms. - expected [0;32m&#34;present&#34;[0m but got: [0;31m&#34;not present&#34;[0m">    at Object.Page de publications (C:\poly\LOG4420\TP3\LOG4420_TP3\TP3_4420A\tests\e2e\publications.js:21:15)
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Expected element &lt;.publications tr:nth-child(10)&gt; text to contain: &#34;Juillet&#34; - expected [0;32m&#34;contain &#39;Juillet&#39;&#34;[0m but got: [0;31m&#34;2016
+Juin
+Collective disambiguation and Semantic Annotation for Entity Linking and Typing
+Patrick Anderson, Michel Deslauriers, Alphonsine Beauchamps
+ESWC-16 Open Knowledge Extraction Challenge, Heraklion, Greece&#34;[0m">    at Object.Page de publications (C:\poly\LOG4420\TP3\TP3_4420A\tests\e2e\publications.js:59:19)
     at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
 
-    <failure message="    at Object.Page de publications (C:\poly\LOG4420\TP3\LOG4420_TP3\TP3_4420A\tests\e2e\publications.js:21:15)">    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+    <failure message="    at Object.Page de publications (C:\poly\LOG4420\TP3\TP3_4420A\tests\e2e\publications.js:59:19)">    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
     </testcase>
   
 

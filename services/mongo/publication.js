@@ -134,8 +134,15 @@ const getPublicationsByIds = db => pubIds => callback => {
   // COMPLET
   db.collection('publications').find({_id: { $in: pubIds } }).toArray(function(err, result) {
     if (err) callback(err, null)
-    else{    
-      callback(null,result)
+    else{   
+      const publications = ((result === null) ? [] : result)
+        .map(publication => {
+          return {
+            ...publication,
+            month: (publication.month === undefined) ? undefined : moment().month(publication.month - 1).format('MMMM')
+          }
+        }) 
+      callback(null,publications)
     }
   })
 }

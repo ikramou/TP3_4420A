@@ -31,7 +31,7 @@ async function  getPublications(req,res,next){
         if (sortBy === "title")
             sort = [['title', orderBy]]
         else
-            sort = [['year', orderBy], ['month', orderBy]]
+            sort = [['date', orderBy]]
         else
             sort = [['title', 'desc']]//,['year', 'desc'], ['month', 'desc']]
 
