@@ -38,7 +38,7 @@
     "moment": "2.23.0",
     "mongo": "^0.1.0",
     "mongodb": "^3.2.7",
-    "pug": "2.0.0-beta11",
+    "pug": "3.0.1",
     "request": "2.88.0",
     "serve-index": "^1.9.1"
   },
